@@ -1,0 +1,125 @@
+##Examples and Exercises of Aggregation and Composition
+## Aggregation
+'''this type of relationship implies that the child class can exist
+independently of its parent class'''
+
+##Parent class in this scenario is Module, Person being the child or sublcass.
+##it is able to exit without needing the Module class
+
+class Module:
+    def __init__(self, name):
+        self._name = name
+        self._students = []
+
+    def get_name(self):
+        return self._name
+
+    def add_student(self, new_stu):
+        self._students.append(new_stu)
+
+    def get_student(self):
+        return self._students
+
+    def print_students(self):
+        if self._students == []:
+            print("No Students")
+
+        else:
+            for i in range(len(self._students)):
+                print(self._students[i])
+
+class Person():
+    def __init__(self, name , age, address):
+        self._name = name
+        self._age = age
+        self._address = address
+
+    def __str__(self):
+        return "Person: {} + Age: {}".format(self._name, self._age)
+
+
+per1 = Person("John", 34, "3 The Green")
+per2 = Person("Anne", 29, "Avenue Moore")
+per3 = Person("David", 20, "Willow Park")
+
+m = Module("OOSD")
+m.add_student(per1)
+m.add_student(per2)
+
+mod1 = Module("Systems Analysis")
+mod1.add_student(per3)
+
+print("Course: "+ m.get_name())
+print("Course: "+ mod1.get_name())
+
+m.add_student(Person("Scott", 22, "Westpark 6"))
+
+print("Students: "+ m.get_student())
+m.print_students()
+mod1.print_students()
+
+
+# -------------------------------------------------
+# We-write the shapes classes from couple of weeks ago and
+# instead of using two numbers, x and y, for the coordinates of
+# the share, use an object of class Point instead.
+
+# class Point:
+#     def __init__(self, x, y):
+#         self._x = x
+#         self._y = y
+#
+#     def set_x(self, new_x):
+#         self._x = new_x
+#
+#     def set_y(self, new_y):
+#         self._y = new_y
+#
+#     def __str__(self):
+#         return "("+str(self._x)+","+str(self._y)+")"
+#
+#
+# class Circle(object):
+#     def __init__(self, p, radius):
+#         self._center = p
+#         self._radius = radius
+#
+#
+#     def move(self, new_x, new_y):
+#         self._center.set_x(new_x)
+#         self._center.set_y(new_y)
+#
+#     def __str__(self):
+#         return "Circle with center:" + str(self._center) + " and radius "+ str(self._radius)
+#
+# c1 = Circle(Point(1,1), 3)
+# print(c1)
+#
+# c1.move(2,2)
+# print(c1)
+
+
+##Composition, where salary cannot exit without Employee class
+##Composition exits when one class is the container
+##and another acts as part of its contents
+#
+# class Salary:
+#     def __init__(self, pay):
+#         self._pay = pay
+#
+#     def annual_salary(self):
+#         return self._pay*12
+#
+# class Employee(object):
+#     def __init__(self, name, pay, bonus):
+#         self._name = name
+#         self._pay = pay
+#         self._bonus = bonus
+#         self._obj_salary = Salary(self._pay)
+#
+#     def get_salary(self):
+#         return "{}'s salary is {}. Plus a bonus: {}".format(self._name, self._obj_salary.annual_salary(), self._bonus)
+#
+#
+# employee = Employee("Shane", 3500, 3500)
+# print(employee.get_salary())
