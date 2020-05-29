@@ -75,3 +75,50 @@ def fib(n):
 
 n = int(input("Enter a number and checks it's Fibonacci sequence - "))
 fib(n)
+
+
+# =============================== Exercise 5 ===============================
+# Write a function that will prompt a user for a number, and print all kaprekar numbers from 10 to that number.
+# Use functions to structure your code where appropriate (kaprekar number, user input (10 - n))
+
+# need to fix list in this
+
+def kaprekar_num(i):
+    square = i**2
+    str_square = str(square)
+    split_square = (str_square[:2], str_square[-2:])
+    kap_num = int(split_square[0]) + int(split_square[1])
+    if kap_num == i:
+        return i
+
+def number_input():
+    kap_num_list = []
+    n = int(input("Enter any number to check all kaprekar numbers from 10 to that number, press '0' to quit -> "))
+    if n > 10:
+        for i in range(10, n+1):
+            kap_num_list.append(kaprekar_num(i)) ## here
+        print(kap_num_list,"- are kaprekar numbers in range 10 - {0}".format(n))
+    else:
+        print("Input should be bigger than 10")
+
+number_input()
+
+# =============================== Exercise 6 ===============================
+# Write a program to check if a number is a Narcissistic number
+
+def narcissistic(num):
+    multiple_v = 0
+    for i in num:
+        digit = int(i)
+        power = digit**len(num)
+        multiple_v += power
+    if multiple_v == int(num):
+        print("{0} is a Narcissistic number.".format(num))
+    else:
+        print("{0} is not a Narcissistic number.".format(num))
+
+def number():
+    num = input("Enter a number to see if its a Narcissistic number -> ")
+    narcissistic(num)
+
+number()
