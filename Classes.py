@@ -74,27 +74,27 @@
 # Design a class to represent a rectangle. Some methods examples can be the rectangle
 # area and rectangle perimeter.
 
-class Rectangle(object):
-    def __init__(self, length, width):
-        self.length = length
-        self.width = width
+# class Rectangle(object):
+#     def __init__(self, length, width):
+#         self.length = length
+#         self.width = width
 
-    def perimeter(self):
-        return 2*(self.length + self.width)
+#     def perimeter(self):
+#         return 2*(self.length + self.width)
 
-    def area(self):
-        return self.length*self.width
+#     def area(self):
+#         return self.length*self.width
 
-    def __str__(self):
-        return "Rectangle area is {}. Perimeter is {}.".format(self.area(), self.perimeter())
+#     def __str__(self):
+#         return "Rectangle area is {}. Perimeter is {}.".format(self.area(), self.perimeter())
 
 
-rect1 = Rectangle(4, 5)
-rect2 = Rectangle(34, 47)
-print(rect1.area())
-print(rect2.perimeter())
-print(rect2.area())
-print(rect2)
+# rect1 = Rectangle(4, 5)
+# rect2 = Rectangle(34, 47)
+# print(rect1.area())
+# print(rect2.perimeter())
+# print(rect2.area())
+# print(rect2)
 
 # ================================================================================================================#
 # Design a class to represent a bank account. Some information you might want in a bank
@@ -109,7 +109,7 @@ class BankAccount(object):
         self.account_num = account_num
         self.balance = balance
         self.transaction_count = 0
-        self.transactions = {}  #Dictionary to store all transactions/info. Keyed by transaction id/count.
+        self.transactions = {}  #Dictionary to store all transactions/info. Keyed by transaction id(count).
         # information will be stored in a tuple (a,b,c,d) where a the type, b is the amount, c is balance
         # after transcation and d is the a message for user to explain transaction e.g. 'bills'.
 
