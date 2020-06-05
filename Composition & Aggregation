@@ -99,27 +99,65 @@ mod1.print_students()
 # print(c1)
 
 
-##Composition, where salary cannot exit without Employee class
-##Composition exits when one class is the container
-##and another acts as part of its contents
-#
-# class Salary:
-#     def __init__(self, pay):
-#         self._pay = pay
-#
-#     def annual_salary(self):
-#         return self._pay*12
-#
-# class Employee(object):
-#     def __init__(self, name, pay, bonus):
-#         self._name = name
-#         self._pay = pay
-#         self._bonus = bonus
-#         self._obj_salary = Salary(self._pay)
-#
-#     def get_salary(self):
-#         return "{}'s salary is {}. Plus a bonus: {}".format(self._name, self._obj_salary.annual_salary(), self._bonus)
-#
-#
-# employee = Employee("Shane", 3500, 3500)
-# print(employee.get_salary())
+
+# Write a class to represent a Salary – salary object has monthly pay amount and a yearly bonus.
+# Add a method to calculate annual pay.Write a class for Employee – each employee has a name, age and a salary
+# (use your salary class). Add any necessary methods.Write a class Company – each company has a name and a list
+# of employees. Add a method to calculate the total pay to all employees per year. Add a functionality
+# to increase everybody’s monthly pay by 5%, and calculate the total pay for the company again.
+
+class Salary:
+    def __init__(self, pay=0):
+        self._pay = pay
+
+    def get_bonus(self):
+        return self.annual_salary() - self.yearly_bonus()
+
+    def annual_salary(self):
+        return self._pay*12
+
+    def yearly_bonus(self):
+        return self.annual_salary()*1.2
+
+    def __str__(self):
+        return "Pay: ", self._pay, "Annual Salary: ", self.annual_salary(), "Salary + Bonus: ", self.yearly_bonus()
+
+class Employee(object):
+    def __init__(self, name, pay):
+        self._name = name
+        self._pay = pay
+        self._obj_salary = Salary(self._pay)
+
+    def employee_earnings(self):
+        return self._obj_salary.yearly_bonus()
+
+    def __str__(self):
+        return self._name + " earns " + str(self.employee_earnings())
+
+class Company(object):
+    def __init__(self, name=""):
+        self.name = name
+        self.employees = []
+
+    def add_employee(self, name, pay):
+        employee = Employee(name, pay)
+        self.employees.append(employee)
+
+    def total_salaries(self):
+        total = 0
+        for e in self.employees:
+            total += e.employee_earnings()
+        return total
+
+    def print_all_employees(self):
+        for e in self.employees:
+            print(e)
+
+
+ibm = Company("IBM")
+ibm.add_employee("Mark", 2500)
+ibm.add_employee("Sam", 3500)
+ibm.add_employee("Harry", 2750)
+
+print(ibm.print_all_employees())
+print(ibm.total_salaries())
