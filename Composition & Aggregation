@@ -100,6 +100,7 @@ mod1.print_students()
 
 
 
+
 # Write a class to represent a Salary – salary object has monthly pay amount and a yearly bonus.
 # Add a method to calculate annual pay.Write a class for Employee – each employee has a name, age and a salary
 # (use your salary class). Add any necessary methods.Write a class Company – each company has a name and a list
@@ -110,11 +111,15 @@ class Salary:
     def __init__(self, pay=0):
         self._pay = pay
 
+    def increase_pay(self):
+        self._pay = self._pay * 1.05
+
     def get_bonus(self):
         return self.annual_salary() - self.yearly_bonus()
 
     def annual_salary(self):
-        return self._pay*12
+        annual_pay = self._pay*12
+        return annual_pay
 
     def yearly_bonus(self):
         return self.annual_salary()*1.2
@@ -130,6 +135,9 @@ class Employee(object):
 
     def employee_earnings(self):
         return self._obj_salary.yearly_bonus()
+
+    def increase_pay(self):
+        self._obj_salary.increase_pay()
 
     def __str__(self):
         return self._name + " earns " + str(self.employee_earnings())
@@ -149,6 +157,10 @@ class Company(object):
             total += e.employee_earnings()
         return total
 
+    def increase_all_pay(self):
+        for e in self.employees:
+            e.increase_pay()
+
     def print_all_employees(self):
         for e in self.employees:
             print(e)
@@ -159,5 +171,11 @@ ibm.add_employee("Mark", 2500)
 ibm.add_employee("Sam", 3500)
 ibm.add_employee("Harry", 2750)
 
+print(ibm.print_all_employees())
+print(ibm.total_salaries())
+print()
+print("Increasing pay....")
+ibm.increase_all_pay()
+print()
 print(ibm.print_all_employees())
 print(ibm.total_salaries())
