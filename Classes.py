@@ -183,3 +183,62 @@ lucas_account.withdraw(35000, "debt payment")
 lucas_account.last_5_transactions()
 print(lucas_account.print_balance())
 
+# ================================================================================================================#
+
+class WholeNumber(object):
+
+    def __init__(self, w_num=0):
+        self.w_num = w_num
+
+    def whole_num(self):
+        if self.w_num < 0:
+            return "Whole number cannot be negative."
+        return self.w_num
+
+    def __add__(self, value):
+        return WholeNumber(self.w_num + value.w_num)
+
+    def __sub__(self, value):
+        return WholeNumber(self.w_num - value.w_num)
+
+    def __mul__(self, value):
+        return WholeNumber(self.w_num * value.w_num)
+
+    def __gt__(self, value):
+        return self.whole_num() > value.whole_num()
+
+    def __lt__(self, value):
+        return self.whole_num() < value.whole_num()
+
+    def __eq__(self, value):
+        return self.whole_num() == value.whole_num()
+
+    def __str__(self):
+        return "Whole number value : " + str(self.w_num)
+
+
+whole_number_1 = WholeNumber(4)
+whole_number_2 = WholeNumber(1)
+whole_number_3 = WholeNumber(10)
+
+whole_number_4 = WholeNumber(-1)
+
+print(whole_number_1)
+print(whole_number_2)
+print(whole_number_3)
+print(whole_number_4)
+print('==================================================================================================')
+sum_instance_1 = whole_number_1 + whole_number_3
+print(sum_instance_1)
+print('==================================================================================================')
+sum_instance_2 = whole_number_2 * whole_number_3
+print(sum_instance_2)
+print('==================================================================================================')
+sum_instance_3 = whole_number_3 - whole_number_2
+print(sum_instance_3)
+print('==================================================================================================')
+sum_instance_4 = whole_number_3 * whole_number_4
+print(sum_instance_4)
+
+
+
