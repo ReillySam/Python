@@ -1,3 +1,13 @@
+# ================================================= Movie Recommender =================================================
+'''
+	Short and simple project to understand the fundamentals of machine learning.
+	This program reads dat from a csv file and recommends movies with common features to the movie title
+	 that is searched by the user. It uses the cosine similarity to compute the weighting of most common
+	 movies in the data set, based on these features.
+
+	 Yet to add vote average as a weighting.
+'''
+
 import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
@@ -9,7 +19,7 @@ def get_title_from_index(index):
 
 def get_index_from_title(title):
 	return df[df.title == title]["index"].values[0]
-##################################################
+
 
 # Read CSV File
 df = pd.read_csv("movie_dataset.csv")
