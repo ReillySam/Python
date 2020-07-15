@@ -1,4 +1,12 @@
- # ========================================= Working with Matrices ================================================
+ # ================================================== MATRIX ==================================================
+'''
+    Matrices (sometimes called 2D or multidimensional arrays) are containers for many values. For example, 
+    a tic tac toe board is a 2D matrix of 3 rows and 3 columns, each holding a character
+    (usually 'x', 'o', and ' '). Matrixes have all the same properties as Arrays and are indexed in the same 
+    manner, just using multiple "indexes", one for each row, column, etc.
+ '''
+
+# ========================================= Working with Matrices ================================================
 
 import numpy as np
 
