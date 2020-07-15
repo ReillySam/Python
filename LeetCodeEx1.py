@@ -198,4 +198,127 @@ import requests
 
 
 # =================================================================================================================== #
-                                    # Exercise 8 
+                                                # Exercise 8 
+    '''
+    Write a Python program to compute the sum of all items of a given array of integers where each integer is
+    multiplied by its index. Return 0 if there is no number.
+'''
+
+# def sum_index_multiplier(numbers):
+#     for i,j in enumerate(numbers):
+#         print(i,'x',j,'=',i*j)
+#     print((sum(i*j for i, j in enumerate(numbers))))
+#
+# sum_index_multiplier([1,2,3,4,5])
+
+
+# =================================================================================================================== #
+                                                # Exercise 9 Isomorphic Strings
+'''
+    In abstract algebra, a group isomorphism is a function between two groups that sets up a one-to-one 
+    correspondence between the elements of the groups in a way that respects the given group operations. 
+    If there exists an isomorphism between two groups, then the groups are called isomorphic.
+    Two strings are isomorphic if the characters in string A can be replaced to get string B
+'''
+#
+# def isIsomorphic(string_1, string_2):
+#     dict_string1 = {}
+#     dict_string2 = {}
+#
+#     if len(string_1) == 0 or len(string_2) == 0 or len(string_1) != len(string_2):
+#         print(False)
+#     for i, value in enumerate(string_1):
+#         dict_string1[value] = dict_string1.get(value, []) + [i]
+#     for j, value in enumerate(string_2):
+#         dict_string2[value] = dict_string2.get(value, []) + [j]
+#     if sorted(dict_string1.values()) == sorted(dict_string2.values()):
+#         print(True)
+#     print(False)
+#
+# def inputStrings():
+#     string_1 = input("Enter the first string: ")
+#     string_2 = input("Enter the first string: ")
+#     isIsomorphic(string_1, string_2)
+#
+# inputStrings()
+
+
+
+class Solution(object):
+
+    def isIsomorphic(self, string_1, string_2):
+        if (string_1 or string_2) is None or len(string_1) != len(string_2):
+            return False
+        # dict used to map characters from each string
+        dict = {}
+        # use to check already mapped characters
+        s = set()
+
+        for i, a in enumerate(string_1):
+            dict[a] = string_1[i]
+            b = string_2[i]
+
+            # return false if a is seen already and mapped to diff character
+            if dict[a] != b:
+                return False
+            else:
+                # if not seen before and has not been mapped
+                if b in s:
+                    return False
+            # otherwise map characters together
+            dict[a] = b
+            s.add(b)
+        return True
+
+
+isomorphic_strings = Solution()
+print(isomorphic_strings.isIsomorphic("paper", "title"))
+print(isomorphic_strings.isIsomorphic("foo", "bar"))
+print(isomorphic_strings.isIsomorphic("aab", "xxy"))
+
+# =================================================================================================================== #
+                                        # Exercise 10 Goldbach's conjecture numbers
+'''
+    Write a Python program that accepts an even number (>=4, Goldbach number) from the user and 
+    creates a combination that express the given number as a sum of two prime numbers. Print 
+    the number of combinations. Goldbach number: A Goldbach number is a positive even integer that 
+    can be expressed as the sum of two odd primes.[4] Since four is the only even number greater 
+    than two that requires the even prime 2 in order to be written as the sum of two primes, 
+    another form of the statement of Goldbach's conjecture is that all even integers greater 
+    than 4 are Goldbach numbers
+'''
+
+
+def primeNumberList(integer_input):
+    # create a list to append all prime numbers to
+    prime_numbers = [2]
+    # all odd integers
+    for i in range(3, integer_input, 2):
+        # check if integers have factors
+        for j in range(2, i):
+            if i%j == 0:
+                break
+            elif j == i - 1:
+                prime_numbers.append(i)
+    return prime_numbers
+
+
+def goldbachNumbers(prime_numbers):
+    # checks all even nums up to the number
+    for i in range(4, 100, 2):
+        for number_1 in prime_numbers:
+            # minus prime number from even num and check if remainder is in the prime num list
+            number_2 = i - number_1
+            if number_2 in prime_numbers:
+                a,b,c = i,number_1,number_2
+                print(a,'=',b,'+',c)
+                break
+
+
+def main():
+    integer_input = int(input("Enter an upper limit integer to check Goldbach's Conjecture: "))
+    list = primeNumberList(integer_input)
+    goldbachNumbers(list)
+
+
+main()
