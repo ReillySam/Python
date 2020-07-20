@@ -1,0 +1,128 @@
+# =============================================== Stacks & Queues =====================================================
+'''
+    Stack is a container of objects that are inserted and removed according to the last-in first-out (LIFO)
+    principle. Queue is a container of objects (a linear collection) that are inserted and removed according
+    to the first-in first-out (FIFO) principle
+'''
+
+# ==================================================== Stacks =========================================================
+class Stack():
+    def __init__(self):
+        self.items = []
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        self.items.pop()
+
+    def isEmpty(self):
+        return self.items == []
+
+    def peek(self):
+        if not self.isEmpty():
+            return self.items[-1]
+
+    def getStack(self):
+        return self.items
+
+stack1 = Stack()
+stack1.push('A')
+stack1.push('B')
+stack1.push('X')
+stack1.push('Z')
+print(stack1.getStack())
+stack1.pop()
+print(stack1.getStack())
+print(stack1.isEmpty())
+print(stack1.peek())
+
+
+'''
+    Use a stack to check whether a string has a balanced usage of parenthesis or not. 
+    Example:
+    (), (()), (({})) - Balanced
+    ((), {{()}}], - Not balanced 
+'''
+
+def isParenBalanced(paren_string):
+    s = Stack()
+    is_balanced = True
+    index = 0
+    while index < len(paren_string) and is_balanced:
+        paren = paren_string[index]
+        if paren in '({[':
+            s.push(paren)
+        else:
+            if s.isEmpty():
+                is_balanced = False
+            else:
+                top = s.pop()
+                if not isMatch(top , paren):
+                    is_balanced = False
+        index += 1
+    if s.isEmpty() and is_balanced: return True
+    else: return False
+
+
+def isMatch(p1, p2):
+    if p1 == '(' and p2 == ')': return True
+    elif p1 == '{' and p2 == '}': return True
+    elif p1 == '[' and p2 == ']': return True
+    else: return False
+
+
+print(isParenBalanced("()"))
+print(isParenBalanced("([)"))
+print(isParenBalanced("({[]})"))
+print("_______________________________________________________________________________________________________________")
+
+
+
+# ==================================================== Queues =========================================================
+
+from collections import deque
+
+
+class Queue():
+
+    def __init__(self):
+        self.buffer = deque()
+
+    def enqueue(self, val):
+        self.buffer.appendleft(val)
+
+    def dequeue(self):
+        return self.buffer.pop()
+
+    def isEmpty(self):
+        return len(self.buffer) == 0
+
+    def size(self):
+        return len(self.buffer)
+
+
+pq = Queue()
+
+pq.enqueue({
+    'company': 'Wall Mart',
+    'timestamp': '15 apr, 11.01 AM',
+    'price': 131.10
+})
+pq.enqueue({
+    'company': 'Wall Mart',
+    'timestamp': '15 apr, 11.02 AM',
+    'price': 132
+})
+pq.enqueue({
+    'company': 'Wall Mart',
+    'timestamp': '15 apr, 11.03 AM',
+    'price': 135
+})
+
+
+for i in pq.buffer: print(i)
+print(pq.size())
+pq.dequeue()
+for i in pq.buffer: print(i)
+
