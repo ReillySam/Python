@@ -126,3 +126,70 @@ print(pq.size())
 pq.dequeue()
 for i in pq.buffer: print(i)
 
+print("_______________________________________________________________________________________________________________")
+
+
+'''
+    Design a food ordering system where your python program will run two threads,
+    
+    Place Order: This thread will be placing an order and inserting that into a queue. This thread places new 
+    order every 0.5 second. (hint: use time.sleep(0.5) function)
+    
+    Serve Order: This thread will server the order. All you need to do is pop the order out of the queue and
+    print it. This thread serves an order every 2 seconds. Also start this thread 1 second after place order 
+    thread is started.
+'''
+
+import time
+import threading
+
+order_queue = Queue()
+
+def placeOrder(orders):
+    for order in orders: order_queue.enqueue(order) and print("\nYour order has been placed: ", order)
+    for i in order_queue.buffer: print("Order list: ",i)
+    print( "_____________________________________________________________________________________________________")
+    time.sleep(0.5)
+
+def serveOrder():
+    time.sleep(2)
+    while True:
+        if order_queue.isEmpty():
+            print("\nNo more food left")
+            break
+        order_served = order_queue.dequeue()
+        print("\nOrder ready!! >>>>>",order_served)
+        time.sleep(2)
+
+
+# if __name__ == '__main__':
+    orders = ['pizza','samosa','pasta','biryani','burger']
+    print("Todays Menu: ",orders)
+
+    t1 = threading.Thread(target = placeOrder, args = (orders, ))
+    t2 = threading.Thread(target= serveOrder)
+
+    t1.start()
+    t2.start()
+
+
+'''
+    Write a program to print binary numbers from 1 to 10 using Queue.Hint: Notice a pattern above. After 1 second 
+    and third number is 1+0 and 1+1. 4th and 5th number are second number (i.e. 10) + 0 and second number
+    (i.e. 10) + 1.
+'''
+
+def binaryNumbers(n):
+    bn_queue = Queue()
+    bn_queue.enqueue("1")
+
+    for i in range(n):
+        front = bn_queue.front()
+        print(front)
+        bn_queue.enqueue(front + "0")
+        bn_queue.enqueue(front + "1")
+
+        bn_queue.dequeue()
+
+if __name__ == '__main__':
+    binaryNumbers(10)
