@@ -212,3 +212,126 @@ tree.printTree()
 print(tree.deleteValue(7))
 tree.printTree()
 
+
+# =========================================== Binary Trees Exercises  ==============================================
+'''
+    Build a  simple Binary Search tree of numbers. Implement the following functions and traversal types
+    Add a child element
+    Search for element
+    Find min, max and sum of elements
+    Implement in order, pre order and post order traversal
+'''
+
+
+class BinarySearchTreeNode():
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+    def add_child(self, data):
+        if self.data == data: return
+        # add child to left
+        if data < self.data:
+            if self.left:
+                self.left.add_child(data)
+            else:
+                self.left = BinarySearchTreeNode(data)
+        # add child to right
+        else:
+            if self.right:
+                self.right.add_child(data)
+            else:
+                self.right = BinarySearchTreeNode(data)
+
+    def in_order_traversal(self):
+        elements = []
+        # visit left tree
+        if self.left:
+            elements += self.left.in_order_traversal()
+
+        # visit root node
+        elements.append(self.data)
+
+        # visit right tree
+        if self.right:
+            elements += self.right.in_order_traversal()
+        return elements
+
+    def pre_order_traversal(self):
+        elements = [self.data]
+        if self.left:
+            elements += self.left.pre_order_traversal()
+        if self.right:
+            elements += self.right.pre_order_traversal()
+
+        return elements
+
+    def post_order_traversal(self):
+        elements = []
+        if self.left:
+            elements += self.left.pre_order_traversal()
+        if self.right:
+            elements += self.right.pre_order_traversal()
+        elements.append(self.data)
+
+        return elements
+
+    def search(self, value):
+        if self.data == value: return True
+
+        if value < self.data:
+            # value might be in left subtree
+            if self.left:
+                return self.left.search(value)
+            else: return False
+
+        if value > self.data:
+            # value might be in right subtree
+            if self.right:
+                return self.right.search(value)
+            else: return False
+
+    def find_min(self):
+        # traverse left down the tree until theres no left node, return data
+        if self.left is None:
+            return self.data
+        return self.left.find_min()
+
+    def find_max(self):
+        # traverse right down the tree until theres no right node, return data
+        if self.right is None:
+            return self.data
+        return self.right.find_min()
+
+    def calculate_sum(self):
+        left_sum = self.left.calculate_sum() if self.left else 0
+        right_sum = self.right.calculate_sum() if self.right else 0
+        return self.data + left_sum + right_sum
+
+def build_tree(elements):
+    root = BinarySearchTreeNode(elements[0])
+    for i in range(1, len(elements)):
+        root.add_child(elements[i])
+    return root
+
+
+if __name__ == '__main__':
+    numbers = [17,10,4,1,2,27,20,9,35,66]
+    number_tree = build_tree(numbers)
+    print("In order traversal -",number_tree.in_order_traversal())
+    print(number_tree.search(35))
+    print(number_tree.search(100))
+    print("Min:",number_tree.find_min())
+    print("Max:",number_tree.find_max())
+    print("Sum:",number_tree.calculate_sum())
+    print("Pre Order Traversal -",number_tree.pre_order_traversal())
+    print("Post Order Traversal -",number_tree.post_order_traversal())
+    print("_______________________________________________________________________________")
+    # using strings
+    countries = ["India", "Ireland", "USA", "Ireland", "Peru","Mexico", "Germany"]
+    country_tree = build_tree(countries)
+    print(country_tree.search("Ireland"))
+    print(country_tree.search("France"))
+    print("Country Tree in alphabetical order:",country_tree.in_order_traversal())
+
