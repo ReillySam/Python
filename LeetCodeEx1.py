@@ -1,7 +1,7 @@
 '''
-    Collection of exercises about the fundamentals of Python for revision and prep. Includes basic and
-    LeetCode algorithm exercises. Beginning with easy questions, then medium and hard.
-    Some are prep interview questions or technical skill development and /or understanding based.
+    Collection of exercises about the fundamentals of Python for revision and prep. Includes basic algorithms and
+    LeetCode algorithm exercises. A mix of easy, medium and hard questions.
+    They are prep interview questions technical skill development for understanding.
 '''
 
 # =================================================================================================================== #
