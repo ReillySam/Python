@@ -71,12 +71,14 @@ while play:
     game = [[' ' for i in range(game_size)] for i in range(game_size)]
     game_won = False
     game_board(game, display=True)
+    
     while not game_won:
         cur_player = next(players)   # itertool used here, next()
         print("\nPlayer {} you're turn!".format(cur_player))
         col_choice = int(input("- Pick a column: "))
         row_choice = int(input("- Pick a row: "))
         game_board(game, cur_player, row_choice, col_choice)
+        
         if win(game):
             game_won = True
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
