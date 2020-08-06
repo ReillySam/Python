@@ -7,7 +7,7 @@
     Still needs some error handling but basically runs
 '''
 
-                                        # Basic TicTacToe Game
+                                      # Basic but dynamic TicTacToe Game
 
 import itertools
 
