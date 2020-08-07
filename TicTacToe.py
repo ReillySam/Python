@@ -1,6 +1,6 @@
 '''
                                          --- TIC TAC TOE ---
-    First goal is to implement a simple version of Tic Tac Toe.
+    First goal is to implement a simple dynamic version of Tic Tac Toe.
     Secondly look how to implement an AI version to play against.
     Possibly using MinMax algorithm and/or alpha beta pruning. Implement with greater structure and design.
     
