@@ -1,18 +1,21 @@
-'''
+''''
                                         --- AI & Tic Tac Toe ---
     The aim of this project is to implement a revised version of Tic Tac Toe with the addition of a computer player
     to play against.
     To train the computer player, so it chooses the best possible move to make. Implementing MinMax algorithm with
     alpha beta pruning to achieve this.
+    
+    Some edits and error checks still to make
 '''
 
 import math
-
+import time
+from Player import AIPlayer, RandomComputerPlayer, HumanPlayer
 
 class TicTacToe():
     def __init__(self):
         self.board = self.make_board()
-        self.winner = None
+        self.current_winner = None
 
     def make_board(self):
         return [' ' for _ in range(9)]
@@ -29,7 +32,7 @@ class TicTacToe():
     def print_board_numbers(self):
         # 0 1 2
         board_numbers = [[str(i) for i in range(j*3, (j+1) * 3)] for j in range(3)]
-        print(board_numbers)
+        # print(board_numbers)
         for row in board_numbers:
             print('| ' + ' | '.join(row) + ' |')
 
@@ -71,15 +74,42 @@ class TicTacToe():
     def available_moves(self):
         return [i for i, square in enumerate(self.board) if square == ' ']
 
+
+# play game function
 def play(game, x_player, o_player, print_game=True):
     if print_game:
         game.print_board_numbers()
 
     letter = 'X'
     while game.empty_squares():
+        # take player's move
+        if letter == 'O':
+            square = o_player.get_move(game)
+        else:
+            square = x_player.get_move(game)
+        if game.make_move(square, letter):  # make_move returns a valid move or not
+            # show players move in board
+            if print_game:
+                print(letter + " has moved to square {}\n".format(square))
+                game.print_board()
+                print()
+                game.print_board_numbers()
+        # check for winner
+        if game.current_winner:
+            if print_game:
+                print("\n", letter + " WINS !!")
+            return letter
+        letter = 'O' if letter == 'X' else 'X'  # switch letter
+
+        time.sleep(0.6)
+
+    if print_game:
+        print("\nDRAW!! There is no winner.")
 
 
-ttt = TicTacToe()
-ttt.print_board()
-ttt.print_board_numbers()
-print(ttt.winner(0, 0))
+
+if __name__ == '__main__':
+    x_player = AIPlayer('X')
+    o_player = HumanPlayer('O')
+    t = TicTacToe()
+    play(t, x_player, o_player, print_game=True)
