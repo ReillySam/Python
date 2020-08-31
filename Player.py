@@ -1,7 +1,8 @@
 '''
                                         --- Tic Tac Toe Players ---
     Players for Tic Tac Toe game project.
-    Both human and computer players developed.
+    Both human and computer players developed. Human player is made for the user. Smart Computer player uses the
+    Mini Max algorithm, random computer uses a simple random choice method to choose its move.
 '''
 
 import random
@@ -16,10 +17,11 @@ class HumanPlayer(Player):
         super().__init__(letter)
 
     def get_move(self, game):
+        # take user input and check if square is available, if valid return value to player move
         val = None
         valid_square = False
         while not valid_square:
-            square = input(self.letter + "it's your turn. Input move 0-9: ")
+            square = input(self.letter + " it's your turn. Input move 0-9: ")
             try:
                 val = int(square)
                 if val not in game.available_moves():
@@ -35,6 +37,7 @@ class RandomComputerPlayer(Player):
         super().__init__(letter)
 
     def get_move(self, game):
+        # choose random sqaure for computer to play
         square = random.choice(game.available_moves())
         return square
 
@@ -43,10 +46,12 @@ class AIPlayer(Player):
         super().__init__(letter)
 
     def get_move(self, game):
-        if len(game.available_moves() == 9):  # empty game all spaces available
+        if len(game.available_moves()) == 9:  # empty game, all spaces are available
             square = random.choice(game.available_moves())
         else:
+            # otherwise run the minimax algorithm
             square = self.mini_max(game, self.letter)['position']
+        # return the square that has been played
         return square
 
     def mini_max(self, game_state, player):
