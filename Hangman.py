@@ -1,7 +1,7 @@
 '''
                                            --- HANGMAN ---
     Hangman game developed in python using a list of stored words. Random imported to generate random 
-    word from string list. One player version with 6 lives. Hangman visualisation also implemented. 
+    word from string list. One player version with 6 lives. Hangman visualisation on terminal also implemented. 
     Short and sweet !!
 '''
 
