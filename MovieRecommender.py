@@ -33,6 +33,7 @@ features = ['keywords', 'cast', 'director', 'genres', 'vote_average']
 for feature in features:
 	df[feature] = df[feature].fillna('___')
 
+# vote average function, not working yet
 # def vote_processing(vote_average):
 # 	return vote_average/vote_average.max()
 #
