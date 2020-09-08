@@ -22,6 +22,7 @@ selected_algo = StringVar()
 data = []
 
 def draw_data(data, colours):
+  # function to draw data bars, made relevant to data quantity (normalized)
     canvas.delete('all')  # clear data field
     canvas_height = 380
     canvas_width = 600
