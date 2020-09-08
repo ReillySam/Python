@@ -1,4 +1,4 @@
-''''
+'''
                                         --- AI & Tic Tac Toe ---
     The aim of this project is to implement a revised version of Tic Tac Toe with the addition of a computer player
     to play against.
