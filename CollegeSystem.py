@@ -1,17 +1,20 @@
-##### COLLEGE SYSTEM ASSIGNMENT #####
-# You are asked to develop a small college management system
-# to illustrate your understanding of the main object-oriented concepts.
-# Your system should keep track of Students. Each student has student ID, name, email address
-# and list of current modules they are taking. Each student can enrol in up to 5 modules max.
-# Each Module has an unique code, a name, a number of ECTS credits.
-# Each module also has a max capacity, and once that is reached no more students can be enrolled until somebody unenrolls first.
-# You’ll need to keep track of, and update, what modules are students enrolled in.
-# Some of the functionality your system should provide is:
-#     • Print and update details about the students
-#     • Print and update details about the modules
-#     • Search for a student using different parameters (e.g. by email or student ID)
-#     • Enrol and unenroll a student from a module
-#     • Create and delete students and modules
+                                        ##### COLLEGE SYSTEM ASSIGNMENT #####
+'''
+    You are asked to develop a small college management system
+    to illustrate your understanding of the main object-oriented concepts.
+    Your system should keep track of Students. Each student has student ID, name, email address
+    and list of current modules they are taking. Each student can enrol in up to 5 modules max.
+    Each Module has an unique code, a name, a number of ECTS credits.
+    Each module also has a max capacity, and once that is reached no more students can be enrolled until somebody unenrolls first.
+    You’ll need to keep track of, and update, what modules are students enrolled in.
+    Some of the functionality your system should provide is:
+        • Print and update details about the students
+        • Print and update details about the modules
+        • Search for a student using different parameters (e.g. by email or student ID)
+        • Enrol and unenroll a student from a module
+        • Create and delete students and modules
+'''
+
 # ================================================================================================================#
 # Modules object used to define each module.
 class Modules:
@@ -19,7 +22,7 @@ class Modules:
     num_of_modules = 0
 
     def __init__(self, module_code, module_name, ects_credits, capacity):
-        '''Initialising Module attributes'''
+        # Initialising Module attributes
         self.module_code = module_code
         self.module_name = module_name
         self.ects_credits = ects_credits
@@ -28,19 +31,19 @@ class Modules:
         Modules.num_of_modules += 1  # count the number of modules
 
     def get_module(self):
-        '''Get the module name'''
+        # Get the module name
         return self.module_name
 
     def get_code(self):
-        '''Get the module code'''
+        # Get the module code
         return self.module_code
 
     def get_capacity(self):
-        '''Get the capacity of students'''
+        # Get the capacity of students
         return self.capacity
 
     def set_capacity(self):
-        '''Decrease the capacity when a student enrolls in a module'''
+        # Decrease the capacity when a student enrolls in a module
         try:
             while self.get_capacity() != 0:
                 self.capacity = int(self.capacity - 1)
@@ -48,13 +51,14 @@ class Modules:
             print("{} has reached its maximum capacity.".format(self.module_name))
 
     def increase_capacity(self):
-        '''Increase the modules capacity when a student un-enrolls from a module'''
+        # Increase the modules capacity when a student un-enrolls from a module
         self.capacity = int(self.capacity + 1)
 
     def __str__(self):
-        '''Display module details in a string for user'''
-        return "Module Code:{}\nModule Name:{}\nECTS Credits:{}\nCapacity:{}".format(self.module_code, self.module_name,
+        # Display module details in a string for user
+        return "Module Code:{0}\nModule Name:{1}\nECTS Credits:{2}\nCapacity:{3}".format(self.module_code, self.module_name,
                                                                                self.ects_credits, self.get_capacity)
+    
 # ================================================================================================================#
 # Student is to define each student and their details, modules list, enroll and un-enroll students
 class Students:
@@ -62,7 +66,7 @@ class Students:
     num_of_students = 0
 
     def __init__(self, stud_id, stu_name, modules=None):
-        '''Initialising Student attributes'''
+        # Initialising Student attributes
         self.stud_id = stud_id
         self.student_name = stu_name
         self.email = "{}@collegeEmail.com".format(self.stud_id)
@@ -74,45 +78,47 @@ class Students:
 
         Students.num_of_students += 1  #count the number of students
 
+    # Student menthods
     def get_name(self):
-        '''Get the students name'''
+        # Get the students name
         return self.student_name
 
     def get_id(self):
-        '''Get the students id'''
+        # Get the students id
         return self.stud_id
 
     def module_count(self):
-        '''Get the length of students module list'''
+        # Get the length of students module list
         return len(self.module_list)
 
     def set_module_list(self, module):
-        '''Add a module to students module list'''
+        # Add a module to students module list
         try:
-            while module_count() <= 5:
+            while self.module_count() <= 5:
                 self.module_list.append(module)
         except ValueError:
             print("{} has reached their maximum module count".format(self.student_name))
 
     def __str__(self):
-        '''Display Student details in a string for users'''
-        print("{} ({}), is enrolled in the modules below.\n Email - {}\n".format(self.student_name, self.stud_id, self.email))
+        # Display Student details in a string for users
+        print("{0} ({1}), is enrolled in the modules below.\n Email - {2}\n".format(self.student_name, self.stud_id, self.email))
         for i in self.module_list:
             print(i)
-        #print([mod for mod in self.module_list]) This wont work?
+        #print([i for i in self.module_list]) This wont work?
 
 # ================================================================================================================#
 # Schools object used to define departments that house certain modules and relevant students
 class School:
 
     def __init__(self, school_name):
-        '''Initialising School and its attributes'''
+        # Initialising School and its attributes
         self.school_name = school_name
         self.modules = {}
         self.students = {}
-
+    
+    # School methods
     def find_module(self, module_code):
-        '''Find and return the module code'''
+        # Find and return the module code
         try:
             if module_code in self.modules:
                 return self.modules.get(module_code)
@@ -120,7 +126,7 @@ class School:
             return "{} cannot be found".format(module_code)
 
     def find_student(self, stud_id):
-        '''Find and call the student id'''
+        # Find and call the student id
         try:
             if stud_id in self.students:
                 return self.students.get(stud_id)
@@ -128,7 +134,7 @@ class School:
             return "{} cannot be found".format(stud_id)
 
     def enrollment(self):
-        '''enroll a student in a module'''
+        # enroll a student in a module
         student_id = input("Enter the student ID: ")
         module_code = input("Enter the module code: ")
 
@@ -139,25 +145,25 @@ class School:
             modules.set_capacity()
             print("{} has successfully enrolled.".format(stud_id))
         except ValueError:
-            return "Limit reached."
+            print("Limit reached.")
 
     def disenroll(self):
-        '''disenroll a student from a module'''
+        # disenroll a student from a module, take id and module code
         student_id = input("Enter the student ID: ")
         module_code = input("Enter the module code: ")
-
+        # find student and module
         stud_id = self.find_student(student_id)
         modules = self.find_module(module_code)
         try:
             if modules in stud_id.module_list:
                 stud_id.module_list.remove(modules)
                 modules.increase_capacity()
-                print("{} has successfully un-enrolled from {}.".format(stud_id, modules))
+                print("{0} has successfully un-enrolled from {1}.".format(stud_id, modules))
         except ValueError:
-            print("{} does not appear to be in enrolled in {}.").format(stud_id, module_code)
+            print("{0} does not appear to be in enrolled in {1}.").format(stud_id, module_code)
 
     def add_module(self):
-        '''create and add a module to modules'''
+        # create and add a module to modules, additional error checks
         module_code = input("Enter Module code: ")
         try:
             while len(module_code) == 6:
@@ -193,17 +199,18 @@ class School:
         self.modules[module_code] = new_module
 
     def delete_module(self, code):
-        '''delete a module'''
+        # delete a module
         mod = self.find_module(code)
         try:
-            if mod not in self.modules.items():  # is searching by keys better here, or self.module.items()?
+            # find module
+            if mod not in self.modules.items():  
                 print("This module doesnt exist.")
                 raise ValueError
         except:
             return self.modules.pop(code)
 
     def add_student(self):
-        '''create and add a student'''
+        # create and add a student with error checks
         student_name = input("Enter Student name: ")
         name_length = len(student_name)
         try:
@@ -228,7 +235,7 @@ class School:
         self.students[stud_id] = new_student
 
     def delete_student(self, student_id):
-        '''delete a student'''
+        # delete a student
         student = self.find_student(student_id)
         try:
             if student in self.students.items():
@@ -237,7 +244,7 @@ class School:
             print("{} doesnt exist in the system.".format(student))
 
     def search_student(self, search):
-        '''search for a student using student id or student email'''
+        # search for a student using student id or student email
         for kvp in self.students.items():
             try:
                 if search == kvp.stud_id or search == kvp.email:
@@ -252,6 +259,7 @@ class School:
         print(self.modules[module_code])
 
     def print_student_details(self):
+        # Print searched student
         student_id = input("Enter the students ID to view their details: ")
         self.find_student(student_id)
         print(self.students[student_id])
@@ -259,6 +267,7 @@ class School:
         # print(student_details.module_list)
 
     def print_all_students(self):
+        # Print all student details
         print("The following students have registered in the {}. \n".format(self.school_name))
         try:
             for stud in self.students.items():
@@ -276,6 +285,8 @@ class School:
             print("No Modules have been created, please add some modules.")
 
     def school_menu(self):
+        #School menu for user interaction plus system operations
+        
         print("Hello! Welcome to the College Management System. Please choose one of the following options:")
         while True:
             print("= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =")
