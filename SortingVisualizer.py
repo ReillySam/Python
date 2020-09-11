@@ -1,6 +1,6 @@
 '''
                                         --- SORTING VISUALIZER ---
-    Develop a sorting visualizer with at least 2 sorting techniques e.g. Quick Sort, Merge, Bubble, Insertion, Selection.
+    Developer a sorting visualizer with at least 2 sorting technique e.g. Quick Sort, Merge, Bubble, Insertion.
     Use the separation of concerns design patter for sorting methods.
     Implement using Tkinter/Flask/CSS/HTML to develop a GUI and/or visual interface.
 '''
@@ -22,7 +22,6 @@ selected_algo = StringVar()
 data = []
 
 def draw_data(data, colours):
-  # function to draw data bars, made relevant to data quantity (normalized)
     canvas.delete('all')  # clear data field
     canvas_height = 380
     canvas_width = 600
@@ -79,24 +78,28 @@ canvas.grid(row=1, column=0, padx=10, pady=10)
 # User interface area
 # Row 0
 Label(UI_frame, text='Algorithm', bg='gray').grid(row=0, column=0, padx=5, pady=5, sticky=W)
+# Dropdown box choice
 algo_menu = ttk.Combobox(UI_frame, textvariable=selected_algo, values=['Bubble Sort', 'Merge Sort', 'Quick Sort'])
 algo_menu.grid(row=0, column=1, padx=5, pady=5)
 algo_menu.current(0)
 
+# Speed Scale
 speed_scale = Scale(UI_frame, from_=0.1, to=1.0, length=200, digits=2, resolution=0.1, orient=HORIZONTAL, label='Select Speed [s]')
 speed_scale.grid(row=0, column=2, padx=5, pady=5)
+# Start button
 Button(UI_frame, text='Start', command=start_algo, bg='lime').grid(row=0, column=3, padx=5, pady=5)
 
-# Row 1
-size_entry = Scale(UI_frame, from_=3, to=30, length=150, resolution=1, orient=HORIZONTAL, label='Data Size')
+# Row 1 Entries
+size_entry = Scale(UI_frame, from_=3, to=30, length=150, resolution=2, orient=HORIZONTAL, label='Data Size')
 size_entry.grid(row=1,  column=0, padx=5, pady=5)
 
 min_entry = Scale(UI_frame, from_=1, to=10, length=150, resolution=1, orient=HORIZONTAL, label='Min Value')
 min_entry.grid(row=1,  column=1, padx=5, pady=5)
 
-max_entry = Scale(UI_frame, from_=10, to=100, length=150, resolution=2, orient=HORIZONTAL, label='Max Value')
+max_entry = Scale(UI_frame, from_=10, to=100, length=150, resolution=5, orient=HORIZONTAL, label='Max Value')
 max_entry.grid(row=1,  column=2, padx=5, pady=5)
 
+# Generate button
 Button(UI_frame, text='Generate', command=generate, bg='white').grid(row=1, column=3, padx=5, pady=5)
-
+# call root and UI frame main
 root.mainloop()
