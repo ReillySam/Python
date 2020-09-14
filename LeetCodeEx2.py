@@ -95,7 +95,7 @@
 # def areParallel(line_1, line_2):
 #     return (line_1[0] / line_1[1] == line_2[0] / line_2[1])
 #
-#
+
 # print(areParallel([2,3,4], [2,3,8]))
 # print(areParallel([2,3,4], [4,-3,8]))
 
