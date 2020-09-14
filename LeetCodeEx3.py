@@ -17,9 +17,10 @@
 def binary_gap(n):
     # format the number into binary
     binary = '{0:04b}'.format(n)
+    # print(binary)
     # strip the outside 0's, creating substring of inside 0's split by one
     max_gap = binary.strip('0').split('1')
     # return the largest 0 substring
     return max([len(i) for i in max_gap])
 
-print(binary_gap(100))
+print(binary_gap(1041))
