@@ -94,3 +94,112 @@ def smallest_posit_int(a):
 # a = [2, 3, 7, 6, 8, -1, -10, 15]
 a = [1, 2, 3, 6, 10, 5, 8] # output = 4
 print(smallest_posit_int(a))
+
+
+# =================================================================================================================== #
+                                       # Exercise 3 - Find smallest positive integer
+'''
+    You are given an unsorted array with both positive and negative elements. You have to find the smallest positive 
+    number missing from the array in O(n) time using constant extra space. You can modify the original array.
+    
+    Example:
+    Input:  {2, 3, 7, 6, 8, -1, -10, 15}
+    Output: 1
+'''
+
+def smallest_posit_int(a):
+    if len(a) == 0:
+        return 0
+    # sort array to increase O(n)
+    a.sort()
+    smallest = 1
+    for i in a:
+        if smallest in a:
+            smallest += 1
+    return smallest
+
+# a = [2, 3, 7, 6, 8, -1, -10, 15]
+a = [1, 2, 3, 6, 10, 5, 8] # output = 4
+print(smallest_posit_int(a))
+
+# =================================================================================================================== #
+                                    # Exercise 4 - Sort by Array Parity
+'''
+    Given an array A of non-negative integers, return an array consisting of all the even elements of A, 
+    followed by all the odd elements of A.
+    You may return any answer array that satisfies this condition
+'''
+
+class Solution(object):
+    def sortArrayByParity(self, A):
+        """
+        :type A: List[int]
+        :rtype: List[int]
+        """
+        return_arr = []
+        odd_elements = []
+        for i in A:
+            if i % 2 == 0:
+                return_arr.append(i)
+            else:
+                odd_elements.append(i)
+        return return_arr + odd_elements
+
+
+# =================================================================================================================== #
+                                    # Exercise 5 - Product of Last Number K
+'''
+    Implement the class ProductOfNumbers that supports two methods:
+    
+    1. add(int num)
+    Adds the number num to the back of the current list of numbers.
+    
+    2. getProduct(int k)
+    Returns the product of the last k numbers in the current list.
+    You can assume that always the current list has at least k numbers
+'''
+# This solution gives the correct output but very poor time complexity, looking to fix
+import numpy
+
+class ProductOfNumbers(object):
+
+    def __init__(self):
+        self.number_list = []
+
+    def add(self, num):
+        """
+        :type num: int
+        :rtype: None
+        """
+        if num < 0 or num > 100:
+            return 0
+        self.number_list.append(num)
+
+    def getProduct(self, k):
+        """
+        :type k: int
+        :rtype: int
+        """
+        if k < 1 or k > 40000:
+            return 0
+        return numpy.prod(self.number_list[-k:])
+
+# Solid solution
+    # def __init__(self):
+    #     self.nums = [1]
+    #
+    # def add(self, num):
+    #     if (not num):
+    #         self.nums = [1]
+    #     else:
+    #         self.nums.append(self.nums[-1] * num)
+    #
+    # def getProduct(self, k):
+    #     if (k >= len(self.nums)):
+    #         return 0
+    #     return self.nums[-1] // self.nums[-k - 1]
+
+# Your ProductOfNumbers object will be instantiated and called as such:
+# obj = ProductOfNumbers()
+# obj.add(num)
+# param_2 = obj.getProduct(k)
