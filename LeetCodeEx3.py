@@ -69,32 +69,6 @@ def solution(a):
 a = [0, 1, 0, 1, 1]
 print(solution(a))
 
-# =================================================================================================================== #
-                                       # Exercise 3 - Find smallest positive integer
-'''
-    You are given an unsorted array with both positive and negative elements. You have to find the smallest positive 
-    number missing from the array in O(n) time using constant extra space. You can modify the original array.
-    
-    Example:
-    Input:  {2, 3, 7, 6, 8, -1, -10, 15}
-    Output: 1
-'''
-
-def smallest_posit_int(a):
-    if len(a) == 0:
-        return 0
-    # sort array to increase O(n)
-    a.sort()
-    smallest = 1
-    for i in a:
-        if smallest in a:
-            smallest += 1
-    return smallest
-
-# a = [2, 3, 7, 6, 8, -1, -10, 15]
-a = [1, 2, 3, 6, 10, 5, 8] # output = 4
-print(smallest_posit_int(a))
-
 
 # =================================================================================================================== #
                                        # Exercise 3 - Find smallest positive integer
@@ -121,6 +95,34 @@ def smallest_posit_int(a):
 # a = [2, 3, 7, 6, 8, -1, -10, 15]
 a = [1, 2, 3, 6, 10, 5, 8] # output = 4
 print(smallest_posit_int(a))
+
+
+# =================================================================================================================== #
+                                       # Exercise 3 - Find smallest positive integer
+'''
+    You are given an unsorted array with both positive and negative elements. You have to find the smallest positive 
+    number missing from the array in O(n) time using constant extra space. You can modify the original array.
+    
+    Example:
+    Input:  {2, 3, 7, 6, 8, -1, -10, 15}
+    Output: 1
+'''
+
+def smallest_posit_int(a):
+    if len(a) == 0:
+        return 0
+    # sort array to increase O(n)
+    a.sort()
+    smallest = 1
+    for i in a:
+        if smallest in a:
+            smallest += 1
+    return smallest
+
+# a = [2, 3, 7, 6, 8, -1, -10, 15]
+a = [1, 2, 3, 6, 10, 5, 8] # output = 4
+print(smallest_posit_int(a))
+
 
 # =================================================================================================================== #
                                     # Exercise 4 - Sort by Array Parity
@@ -203,3 +205,57 @@ class ProductOfNumbers(object):
 # obj = ProductOfNumbers()
 # obj.add(num)
 # param_2 = obj.getProduct(k)
+
+
+# =================================================================================================================== #
+                                    # Exercise 6 - 637. Average of Levels in Binary Tree
+'''
+    Given a non-empty binary tree, return the average value of the nodes on each level in the form of an array.
+    Example:
+    Input:
+        3
+       / \
+      9  20
+        /  \
+       15   7
+    Output: [3, 14.5, 11]
+    
+    Explanation:
+    The average value of nodes on level 0 is 3,  on level 1 is 14.5, and on level 2 is 11. Hence return [3, 14.5, 11].
+'''
+
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+import collections
+
+class Solution(object):
+    def averageOfLevels(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[float]
+        """
+        if root == None:
+            return []
+
+        output = []
+        queue = collections.deque([root])
+
+        while queue:
+            level_sum = 0
+            level_nodes = len(queue)
+            for _ in range(level_nodes):
+                node = queue.popleft()
+                level_sum += node.val
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            output.append((level_sum / level_nodes))
+
+        return output
