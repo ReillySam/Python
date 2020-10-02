@@ -208,7 +208,7 @@ class ProductOfNumbers(object):
 
 
 # =================================================================================================================== #
-                                    # Exercise 6 - 637. Average of Levels in Binary Tree
+                                    # Exercise 6 - Average of Levels in Binary Tree
 '''
     Given a non-empty binary tree, return the average value of the nodes on each level in the form of an array.
     Example:
