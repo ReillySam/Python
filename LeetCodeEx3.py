@@ -328,7 +328,6 @@ print(solution_2([3, 4, 3, 2, 3, -1, 3, 3]))
     Output: 3
 '''
 
-
 class Solution(object):
     def numRookCaptures(self, board):
         """
@@ -351,8 +350,8 @@ class Solution(object):
             if board[rook_index[0]][col] == 'B':
                 flag = False
                 break
-            if board[rook_index[0][col] == 'p':
-                pawn += 1 
+            if board[rook_index[0]][col] == 'p':
+                pawn += 1
                 break
             col -= 1
         if flag and pawn != 0:
@@ -363,10 +362,10 @@ class Solution(object):
         pawn = 0
         col = rook_index[1] + 1
         while col < len(board[0]):
-            if board[rook_index][col] == 'B':
+            if board[rook_index[0]][col] == 'B':
                 flag = False
                 break
-            if board[rook_index][col] == 'p':
+            if board[rook_index[0]][col] == 'p':
                 pawn += 1
                 break
             col += 1
@@ -381,7 +380,7 @@ class Solution(object):
             if board[row][rook_index[1]] == 'B':
                 flag = False
                 break
-            if board[rook_index][col[1]] == 'p':
+            if board[row][rook_index[1]] == 'p':
                 pawn += 1
                 break
             row += 1
@@ -396,7 +395,7 @@ class Solution(object):
             if board[row][rook_index[1]] == 'B':
                 flag = False
                 break
-            if board[rook_index][col[1]] == 'p':
+            if board[row][rook_index[1]] == 'p':
                 pawn += 1
                 break
             row -= 1
