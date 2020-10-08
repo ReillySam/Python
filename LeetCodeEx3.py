@@ -352,7 +352,7 @@ class Solution(object):
                 flag = False
                 break
             if board[rook_index[0][col] == 'p':
-            pawn + 1
+                pawn += 1 
                 break
             col -= 1
         if flag and pawn != 0:
@@ -367,7 +367,7 @@ class Solution(object):
                 flag = False
                 break
             if board[rook_index][col] == 'p':
-                pawn + 1
+                pawn += 1
                 break
             col += 1
         if flag and col != 0:
@@ -384,7 +384,7 @@ class Solution(object):
             if board[rook_index][col[1]] == 'p':
                 pawn += 1
                 break
-            col += 1
+            row += 1
         if flag and col != 0:
             captures += 1
 
@@ -399,7 +399,7 @@ class Solution(object):
             if board[rook_index][col[1]] == 'p':
                 pawn += 1
                 break
-            col += 1
+            row -= 1
         if flag and col != 0:
             captures += 1
 
