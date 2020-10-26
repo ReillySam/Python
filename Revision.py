@@ -19,13 +19,44 @@ l = [3,15,7,1,19,44,2,5,0]
 # print(bubble_sort(l))
 
 
+
 # =================================================================================================================== #
-                                         # Exercise 5 - Strobogrammatic Numbers
+                                            # Goldbach's conjecture numbers
 '''
-    Write a Python program to get all strobogrammatic numbers that are of length n. Go to the editor
-    A strobogrammatic number is a number whose numeral is rotationally symmetric, so that 
-    it appears the same when rotated 180 degrees. In other words, the numeral looks the same 
-    right-side up and upside down (e.g., 69, 96, 1001).
+    Write a Python program that accepts an even number (>=4, Goldbach number) from the user and 
+    creates a combination that express the given number as a sum of two prime numbers. Print 
+    the number of combinations. Goldbach number: A Goldbach number is a positive even integer that 
+    can be expressed as the sum of two odd primes.[4] Since four is the only even number greater 
+    than two that requires the even prime 2 in order to be written as the sum of two primes, 
+    another form of the statement of Goldbach's conjecture is that all even integers greater 
+    than 4 are Goldbach numbers
+    
+    Sort all prime numbers up to number. Find all even numbers up to number. See if the factor of 
+    even - prime is in prime nums list.
 '''
 
-def strobogrammatic(n):
+def prime_numbers(integer):
+    prime_nums = [2]
+    for i in range(3, integer, 2):
+        for j in range(2, i):
+            if i % j == 0:
+                break
+            elif j == i - 1:
+                prime_nums.append(i)
+    return prime_nums
+
+def goldbach_nums(prime_numbers, integer):
+    for even in range(4, integer, 2):
+        for prime in prime_numbers:
+            gb_num = even - prime
+            if gb_num in prime_numbers:
+                print(even, '=', prime, '+', gb_num)
+                break
+
+
+def main():
+    integer = int(input("Enter the integer limit: "))
+    prime_nums = prime_numbers(integer)
+    goldbach_nums(prime_nums, integer)
+
+main()
