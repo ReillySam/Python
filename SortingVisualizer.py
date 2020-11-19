@@ -78,6 +78,7 @@ canvas.grid(row=1, column=0, padx=10, pady=10)
 # User interface area
 # Row 0
 Label(UI_frame, text='Algorithm', bg='gray').grid(row=0, column=0, padx=5, pady=5, sticky=W)
+
 # Dropdown box choice
 algo_menu = ttk.Combobox(UI_frame, textvariable=selected_algo, values=['Bubble Sort', 'Merge Sort', 'Quick Sort'])
 algo_menu.grid(row=0, column=1, padx=5, pady=5)
