@@ -86,6 +86,7 @@ algo_menu.current(0)
 # Speed Scale
 speed_scale = Scale(UI_frame, from_=0.1, to=1.0, length=200, digits=2, resolution=0.1, orient=HORIZONTAL, label='Select Speed [s]')
 speed_scale.grid(row=0, column=2, padx=5, pady=5)
+
 # Start button
 Button(UI_frame, text='Start', command=start_algo, bg='lime').grid(row=0, column=3, padx=5, pady=5)
 
