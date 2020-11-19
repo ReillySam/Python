@@ -12,6 +12,7 @@ from BubbleSort import bubble_sort
 from MergeSort import merge_sort
 from QuickSort import quick_sort
 
+
 root = Tk()
 root.title("Sorting Algorithm Visualizer")
 root.maxsize(900, 600)
