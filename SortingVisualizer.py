@@ -104,5 +104,6 @@ max_entry.grid(row=1,  column=2, padx=5, pady=5)
 
 # Generate button
 Button(UI_frame, text='Generate', command=generate, bg='white').grid(row=1, column=3, padx=5, pady=5)
+
 # call root and UI frame main
 root.mainloop()
