@@ -22,6 +22,7 @@ root.config(bg="black")
 selected_algo = StringVar()
 data = []
 
+
 def draw_data(data, colours):
     canvas.delete('all')  # clear data field
     canvas_height = 380
