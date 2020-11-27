@@ -62,6 +62,8 @@ def game_board(game_map, player='', row=0, column=0, display=False):
     except Exception as e:
         print("Error: ",e)
         return game_map, False
+      
+      
 
 play = True
 players = itertools.cycle(('X', 'O'))  # itertool to cycle between the two items
