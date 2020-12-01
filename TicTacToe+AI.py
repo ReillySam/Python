@@ -106,8 +106,9 @@ def play(game, x_player, o_player, print_game=True):
 
     if print_game:
         print("\nDRAW!! There is no winner.")
-
-
+        
+        
+        
 if __name__ == '__main__':
     x_player = AIPlayer('X')
     o_player = HumanPlayer('O')
