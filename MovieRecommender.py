@@ -70,6 +70,7 @@ similar_movies = list(enumerate(cosine_sim[movie_index]))		#creates list of tupl
 #Get a list of similar movies in descending order of similarity score
 sort_similar_movies = sorted(similar_movies, key=lambda x:x[1], reverse=True)
 
+
 #Print titles of first 10 movies
 i = 0
 print("Top 10 Movie recommendations similar to", movie_user_likes, "are;")
