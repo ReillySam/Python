@@ -1,7 +1,7 @@
 # ================================================= Movie Recommender =================================================
 '''
 	Short and simple project to understand the fundamentals of machine learning.
-	This program reads dat from a csv file and recommends movies with common features to the movie title
+	This program reads data from a csv file and recommends movies with common features to the movie title
 	 that is searched by the user. It uses the cosine similarity to compute the weighting of most common
 	 movies in the data set, based on these features.
 
