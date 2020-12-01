@@ -13,6 +13,7 @@ import math
 import time
 from Player import AIPlayer, RandomComputerPlayer, HumanPlayer
 
+
 class TicTacToe():
     def __init__(self):
         self.board = self.make_board()
