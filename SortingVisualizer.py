@@ -59,6 +59,7 @@ def generate():
 
     draw_data(data, ['yellow' for i in range(len(data))])
 
+    
 def start_algo():
     global data
     if not data: return
