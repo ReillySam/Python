@@ -20,6 +20,7 @@ root.title("Sorting Algorithm Visualizer")
 root.maxsize(900, 600)
 root.config(bg="black")
 
+
 # Variables
 selected_algo = StringVar()
 data = []
