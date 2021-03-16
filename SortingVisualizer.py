@@ -1,6 +1,6 @@
 '''
                                         --- SORTING VISUALIZER ---
-    Developer a sorting visualizer with at least 2 sorting technique e.g. Quick Sort, Merge, Bubble, Insertion.
+    Develop a sorting visualizer with at least 2 sorting technique e.g. Quick Sort, Merge, Bubble, Insertion.
     Use the separation of concerns design patter for sorting methods.
     Implement using Tkinter to develop a GUI and/or visual interface.
     
