@@ -92,7 +92,85 @@ class Solutions():
 
         return smallest_int
 
-mi = Solutions()
-print(mi.MissingInteger( [1,3,6,4,1,2] )) # 5
-print(mi.MissingInteger( [1,2,3] )) # 4
-print(mi.MissingInteger( [-1,-3,0] )) # 1
+# mi = Solutions()
+# print(mi.MissingInteger( [1,3,6,4,1,2] )) # 5
+# print(mi.MissingInteger( [1,2,3] )) # 4
+# print(mi.MissingInteger( [-1,-3,0] )) # 1
+
+
+    # calcualte value of counters after applying operations
+    def MaxCounters(self, N, A):
+        counters = [0] * N
+        max_result = max_counter = 0
+
+        for i in range(len(A)):
+            if A[i] == N + 1:
+                max_result = max(max_result, max_counter)
+            else:
+                if counters[A[i] - 1] < max_result:
+                    counters[A[i] - 1] = max_result
+
+                counters[A[i] - 1] += 1
+                max_counter = max(max_counter, counters[A[i] - 1])
+
+        for i in range(N):
+            counters[i] = max(max_result, counters[i])
+
+        return counters
+
+
+# mx = Solutions()
+# print(mx.MaxCounters( 5, [3,4,4,6,1,4,4] )) # [ 3,2,2,4,2 ]
+
+
+    def PassingCars(self, A):
+        count = 0
+        passes = 0
+
+        for i in A:
+            if i == 0:
+                count += 1
+            else:
+                passes += count
+            # handle max passing cars
+            if len(A) > 100000 or passes > 1000000000:
+                return - 1
+
+        return passes
+
+
+# pc = Solutions()
+# print(pc.PassingCars( [0, 1, 0, 1, 1] )) # 5
+
+
+    # final the minimum nucleotide in a range sequence of DNA
+    def GenomicRangeQuery(self, S, P, Q):
+        impact_factor = []
+
+        # solution 1
+        letters = [ "A", "C", "G", "T" ]
+        dict_temp = { val:i+1 for i, val in enumerate(letters) }
+
+        for i in range(len(P)):
+            for key in dict_temp:
+                if key in (S[P[i]:Q[i] + 1]):
+                    impact_factor.append(dict_temp[key])
+                    break
+
+        # solution 2
+        for i in range(len(P)):
+            # substrings P : Q
+            if "A" in (S[P[i]:Q[i] + 1]):
+                impact_factor.append(1)
+            elif "C" in (S[P[i]:Q[i] + 1]):
+                impact_factor.append(2)
+            elif "G" in (S[P[i]:Q[i] + 1]):
+                impact_factor.append(3)
+            else:
+                impact_factor.append(4)
+
+        return impact_factor
+
+
+grq = Solutions()
+print(grq.GenomicRangeQuery( "CAGCCTA", [2,5,0], [4,5,6] )) # 2 4 1
