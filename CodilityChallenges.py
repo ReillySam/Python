@@ -174,3 +174,62 @@ class Solutions():
 
 grq = Solutions()
 print(grq.GenomicRangeQuery( "CAGCCTA", [2,5,0], [4,5,6] )) # 2 4 1
+
+    # Find the number of distinct values on an array
+    def DistinctValues(self, A):
+        values = set(A)
+        return len(values)
+
+
+# dv = Solutions()
+# print(dv.DistinctValues( [ 2,1,1,2,3,1 ] )) # 3
+
+    # find the max product of three elements in an array
+    def MaxProductOfThree(self, A):
+        R = max(A)
+        Q = sorted(A)[-2]
+        P = sorted(A)[-3]
+
+        neg_max_1 = min(A)
+        neg_max_2 = sorted(A)[1]
+
+        # largest product with negative values
+        neg_prod = R*neg_max_1*neg_max_2
+
+        # three largest positive numbers
+        product = R*P*Q
+
+        return max(product, neg_prod)
+
+
+# mpot = Solutions()
+# print(mpot.MaxProductOfThree( [ -3,1,2,-2,5,6 ] ))  # 2*5*6 = 60, return 60
+
+
+    # return the starting position of whose slice(avg) is minimal
+    def MinAvgTwoSlice(self, A):
+        min_avg_two = sys.maxsize
+        min_avg_three = sys.maxsize
+
+        min_index_two = 0
+        min_index_three = 0
+
+        for i in range(len(A) - 1):
+            two_avg = sum(A[i : i + 2]) / 2
+            if two_avg < min_avg_two:
+                min_avg_two = two_avg
+                min_index_two = i
+
+        for i in range(len(A) - 2):
+            three_avg = sum(A[i : i + 3]) / 3
+            if three_avg < min_avg_three:
+                min_avg_three = three_avg
+                min_index_three = i
+
+        if min_avg_two <= min_avg_three:
+            return min_index_two
+        return min_index_three
+
+
+mats = Solutions()
+print(mats.MinAvgTwoSlice( [4,2,2,5,1,5,8] )) # 1
