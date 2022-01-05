@@ -17,7 +17,7 @@ class Stack():
         self.items.pop()
 
     def isEmpty(self):
-        return self.items == []
+        if not self.items: return True
 
     def peek(self):
         if not self.isEmpty():
@@ -96,7 +96,7 @@ class Queue():
         return self.buffer.pop()
 
     def isEmpty(self):
-        return len(self.buffer) == 0
+        if not self.buffer: return True
 
     def size(self):
         return len(self.buffer)
