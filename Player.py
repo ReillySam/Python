@@ -87,4 +87,4 @@ class AIPlayer(Player):
             else:
                 if score_simulation['score'] < best_score['score']:
                     best_score = score_simulation
-        return best_score
+        return best_score 
