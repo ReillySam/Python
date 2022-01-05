@@ -14,14 +14,6 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 
-###### helper functions to be used when needed #######
-def get_title_from_index(index):
-	return df[df.index == index]["title"].values[0]
-
-def get_index_from_title(title):
-	return df[df.title == title]["index"].values[0]
-
-
 # Read CSV File
 df = pd.read_csv("movie_dataset.csv")
 # print(df.head())
@@ -80,3 +72,11 @@ for movie in sort_similar_movies:
 	print(i, get_title_from_index(movie[0]))
 	if i >= 10:
 		break
+
+		
+###### helper functions to be for getting title and index #######
+def get_title_from_index(index):
+	return df[df.index == index]["title"].values[0]
+
+def get_index_from_title(title):
+	return df[df.title == title]["index"].values[0]
