@@ -48,21 +48,23 @@ class TicTacToe():
 
     def winner(self, square, letter):
         # check row
-        row_idx = math.floor(square / 3) # remainder == row
+        # find row idx 0 1 2 & check if all square in the row are the same
+        row_idx = math.floor(square / 3) # remainder == row / math.floor rounds down to nearest int
         row = self.board[row_idx * 3: (row_idx + 1) * 3]  # indexes all squares in row
         if all([sq == letter for sq in row]): # checks id all squares in row are same and equal to letter
             return True
         # check column
+        # find col idx 0 1 2 & check if all square in the row are the same
         col_idx = square % 3  # remainder == column
         column = [self.board[col_idx + (i * 3)] for i in range(3)]  # all column squares
         if all(sq == letter for sq in column):
             return True
         # check diagonal
         if square % 2 == 0:
-            diagonal_1 = [self.board[i] for i in [0, 4, 8]]  # checks board index for each of the listed indexes
+            diagonal_1 = [self.board[i] for i in [0, 4, 8]]  # checks board index for each of the listed indexes 
             if all(sq == letter for sq in diagonal_1):
                 return True
-            diagonal_2 = [self.board[i] for i in [2, 4, 6]]
+            diagonal_2 = [self.board[i] for i in [2, 4, 6]] 
             if all(sq == letter for sq in diagonal_2):
                 return True
         return False
